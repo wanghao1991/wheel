@@ -44,11 +44,20 @@ module.exports = {
                     'sass-loader?indentedSyntax'
                 ],
             },
+
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
             },
+            {
+                test: /\.svg$/,
+                loader: 'svg-sprite-loader',
+                include: [path.resolve(__dirname,'src/icons')],
+                options: {
+                    symbolId: 'icon-[name]'
+                }
+             },
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
