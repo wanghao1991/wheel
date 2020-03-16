@@ -10,7 +10,10 @@
 
 <script>
 import IconBase from './IconBase.vue'
+import emmit from '../util/index.js'
 export default {
+    name:"wbutton",
+    mixins: [emmit],
     components:{
         IconBase
     },
@@ -51,9 +54,19 @@ export default {
             ]
         }
     },  
+    mounted () {
+      this.$on('mm',this.pp)  
+      
+    },
     methods:{
+        pp(param){
+            console.log(33333,param)
+           
+        },
         clickFn(event){
-            this.$emit('click',event)
+            //this.$emit('click',event)
+        
+            this.dispatch('wButtongroup','mm','dsds')
         }
     }
 }

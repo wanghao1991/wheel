@@ -1,5 +1,5 @@
 <template>
-  <svg :class="svgClass" aria-hidden="true">
+  <svg :class="svgClass" aria-hidden="true" @click="clickFn">
       <use :xlink:href="iconName"></use>
   </svg>
 </template>
@@ -14,6 +14,9 @@ export default {
         },
         className:{
             type:String
+        },
+        type:{
+            type:String
         }
     },
     computed:{
@@ -21,13 +24,19 @@ export default {
             return `#icon-${this.name}`
         },
         svgClass() {
-            if (this.className) {
-                return 'svg-icon ' + this.className
-            } else {
-                return 'svg-icon'
-            }
+            const {className,type} = this;
+            return [
+                `svg-icon`,
+                className&&`svg-icon${className}`,
+                type&&`svg-icon-${type}`
+            ]
         }
  
+    },
+    methods:{
+        clickFn(){
+            this.$emit('click')
+        }
     }
 }
 </script>
@@ -39,5 +48,8 @@ export default {
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
+}
+.svg-icon-button{
+    cursor: pointer;
 }
 </style>  

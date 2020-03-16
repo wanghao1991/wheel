@@ -1,15 +1,20 @@
 <template>
-  <div class="button-group">
+  <div class="button-group" >
+      <p @click="kaka">sdsd </p>
       <slot></slot>
   </div>
 </template>
 
 <script>
 import Button from './Button.vue'
+import emmit from '../util/index.js'
 export default {
+    name:'wButtongroup',
+    mixins: [emmit],
     components:{
         wButton:Button
     },
+    
     mounted(){
         console.log(323,this.$el.children)
         let child = this.$el.children;
@@ -19,6 +24,16 @@ export default {
             if(name !== 'BUTTON'){
                 console.warn(`w-button-group 中子元素必须为button,而你的包含${name}`)
             }
+        }
+        this.$on('mm',this.yy)
+    },
+    methods:{
+        kaka(){
+            console.log(2)
+           this.broadcast('wbutton','mm',{name:'wanghao'})
+        },
+        yy(kk){
+            console.log(434,kk)
         }
     }
 }

@@ -9,10 +9,15 @@
       }],
       "stage-3"
     ],
+    "plugins": [
+      "transform-vue-jsx", 
+      "transform-decorators-legacy",
+      ["transform-class-properties", { "spec": true }]
+    ],
     "env": {
       "test": {
         "presets": ["env", "stage-3"],
-        "plugins": ["istanbul"]
+        "plugins": ["istanbul","transform-vue-jsx"]
       }
     }
   }
