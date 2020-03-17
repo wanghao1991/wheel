@@ -1,8 +1,10 @@
 <script>
 import {Vue, Component, Watch} from 'vue-property-decorator'
+import emitter from '../../util/index.js'
 import IconBase from '../IconBase.vue'
 @Component({
   components: { IconBase },
+  mixins:[emitter],
   props:{
     disabled:{
       type:Boolean,
@@ -53,15 +55,21 @@ export default class Input extends Vue{
     const val = e.target.value;
     this.setValue(val);
     this.$emit('input',val,e)
+    this.triggerForm('on-form-change',val)
   }
   onKeydown(e){
     if(e.keyCode === 13){
       this.$emit('pressenter', e);
     }
     this.$emit('keydown', e)
+    this.triggerForm('on-form-change',e.target.value)
   }
   onBlur(e){
     this.$emit('blur', e)
+    this.triggerForm('on-form-blur',e.target.value)
+  }
+  triggerForm(type,value){
+    this.dispatch('wFormItem',type,value)
   }
   setValue(value){
     console.log(8899,this)

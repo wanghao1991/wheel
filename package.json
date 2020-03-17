@@ -13,6 +13,7 @@
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.31",
     "add": "^2.0.6",
+    "async-validator": "^3.2.4",
     "babel-core": "^6.26.3",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-plugin-syntax-jsx": "^6.18.0",

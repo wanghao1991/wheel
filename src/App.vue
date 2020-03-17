@@ -48,6 +48,16 @@
     <w-input  placeholder="禁用" :allowClear="true" ></w-input>
 
     <w-checkbox v-model="kk" @change="ppp" >你好</w-checkbox>
+
+    <w-form ref="myform" :model="formData" :rules="reulsValidate">
+      <w-form-item prop="name" label="用户名">
+        <w-input  v-model="formData.name" placeholder="请输入" :allowClear="true" ></w-input>
+      </w-form-item>
+      <w-form-item prop="mail" label="邮箱">
+        <w-input  v-model="formData.mail" placeholder="请输入" :allowClear="true" ></w-input>
+      </w-form-item>
+    </w-form>
+    <w-button type="primary" block @click="submitFn">提交</w-button>
   </div>
 </template>
 
@@ -59,6 +69,11 @@ import Button from './components/Button.vue'
 import ButtonGroup from './components/ButtonGroup.vue'
 import WInput from './components/Input/index.js'
 import wCheckbox from './components/checkbox/checkbox.vue'
+
+import wForm from './components/form/form.vue'
+import wFormItem from './components/form/form-item.vue'
+
+
 export default {
   name: 'app',
   components:{
@@ -66,13 +81,36 @@ export default {
     wButton:Button,
     wButtonGroup:ButtonGroup,
     WInput,
-    wCheckbox
+    wCheckbox,
+    wForm,
+    wFormItem
   },
   data () {
     return {
       pp:'dddddd',
       msg: 'Welcome to Your Vue.js',
-      kk:true
+      kk:true,
+      formData:{
+        name:'',
+        mail:''
+      },
+      reulsValidate:{
+        name:[
+          {
+            required:true,message:'不能为空',trigger:'blur'
+          }
+        ],
+        mail:[
+          {
+            required:true,message:'邮箱不能为空',trigger:'blur'
+          },
+          {
+            type:"email",
+            message:'邮箱格式不对',
+            trigger:"blur"
+          }
+        ]
+      }
     }
   },
   created() {
@@ -98,6 +136,12 @@ export default {
       //   content:'我是信息',
       //   duration:3
       // })
+    },
+    submitFn(){
+      console.log(666,this)
+      this.$refs.myform.validate(valid=>{
+        console.log(3333,valid)
+      })
     }
   }
 }

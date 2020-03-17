@@ -64,7 +64,7 @@ export default {
            
         },
         clickFn(event){
-            //this.$emit('click',event)
+            this.$emit('click',event)
         
             this.dispatch('wButtongroup','mm','dsds')
         }
