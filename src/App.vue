@@ -47,7 +47,7 @@
 
     <w-input  placeholder="禁用" :allowClear="true" ></w-input>
 
-    <w-checkbox v-model="kk" @change="ppp" >你好</w-checkbox>
+    
 
     <w-form ref="myform" :model="formData" :rules="reulsValidate">
       <w-form-item prop="name" label="用户名">
@@ -58,6 +58,15 @@
       </w-form-item>
     </w-form>
     <w-button type="primary" block @click="submitFn">提交</w-button>
+
+
+    
+    <w-checkbox-group v-model="rr">
+      <w-checkbox label="我是1" value="ww"></w-checkbox>
+      <w-checkbox label="我是2" value="qq"></w-checkbox>
+      <w-checkbox label="我是3" value="ff"></w-checkbox>
+    </w-checkbox-group>
+    {{rr}}
   </div>
 </template>
 
@@ -69,6 +78,7 @@ import Button from './components/Button.vue'
 import ButtonGroup from './components/ButtonGroup.vue'
 import WInput from './components/Input/index.js'
 import wCheckbox from './components/checkbox/checkbox.vue'
+import wCheckboxGroup from './components/checkbox/checkbox-group.vue'
 
 import wForm from './components/form/form.vue'
 import wFormItem from './components/form/form-item.vue'
@@ -82,11 +92,13 @@ export default {
     wButtonGroup:ButtonGroup,
     WInput,
     wCheckbox,
+    wCheckboxGroup,
     wForm,
     wFormItem
   },
   data () {
     return {
+      rr:[],
       pp:'dddddd',
       msg: 'Welcome to Your Vue.js',
       kk:true,
@@ -131,7 +143,7 @@ export default {
     },
     haha(e){
       console.log(22,e)
-      this.kk =false;
+      this.kk = !this.kk;
       // this.$Alert.info({
       //   content:'我是信息',
       //   duration:3
