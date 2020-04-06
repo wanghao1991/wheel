@@ -30,6 +30,7 @@ import {findComponentUpward} from '../../util/assist.js'
 export default class Checkbox extends Vue{
     currentValue = this.value
     group = false
+    checks = false
     parent = null
     model = []
 
@@ -42,6 +43,7 @@ export default class Checkbox extends Vue{
         }
     }
 
+    
     updateModel(){
         this.currentValue = this.value === this.trueValue
     }
@@ -66,15 +68,20 @@ export default class Checkbox extends Vue{
         this.currentValue = checked;
 
         const value = checked ? trueValue : falseValue;
-        const ppp = checked ? event.target.value: null
+        const ppp = event.target.value
 
         if(this.group){
-            if(checked){
+            if(checked && !this.model.includes(ppp)){
                 this.model.push(ppp)
             }else{
-                this.model.splice(this.model.indexOf(ppp),1)
+                let index = this.model.indexOf(ppp)
+                console.log(index,this.model,ppp)
+                if(index>=0){
+                    this.model.splice(index,1)
+                }
+                
             }
-            console.log(55,ppp)
+            console.log(55,ppp,this.model)
             
             this.parent.change(this.model)
         }else{
@@ -82,13 +89,21 @@ export default class Checkbox extends Vue{
             this.$emit('input',value)
         }
     }
+    ppp(){
+        console.log(this.model)
+        this.currentValue = this.model.includes(this.value)
+    }
+
     render(){
-        const {disabled,currentValue,change,group,label,model,value} = this;
+        const {disabled,currentValue,change,group,label,model,value,checks} = this;
         return (
             <label>
                 <span>
                     {group
-                    ?(<input type="checkbox" disabled={disabled} value={value} on-change={change}/>)
+                    ?(<span>
+                        
+                        <input type="checkbox" disabled={disabled}  checked={currentValue} value={value} on-change={change}/>
+                    </span>)
                     :(<input type="checkbox" disabled={disabled} checked={currentValue} on-change={change}/>)} 
                 </span>
                 {label}

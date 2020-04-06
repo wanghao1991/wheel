@@ -33,7 +33,9 @@ export default class CheckboxGroup extends Vue{
             this.childrens.forEach(child=>{
                 child.model = value;
                 if(update){
-                    child.currentValue = value.indexOf(child.label) > 0;
+                    
+                    child.ppp()
+                    console.log(444,child)
                     child.group = true;
                 }
             })
@@ -41,7 +43,7 @@ export default class CheckboxGroup extends Vue{
     }
 
     change(data){
-        console.log(2,data)
+        
         this.currentValue = data;
         this.$emit('change',data)
         this.$emit('input',data)

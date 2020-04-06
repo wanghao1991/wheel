@@ -67,6 +67,8 @@
       <w-checkbox label="我是3" value="ff"></w-checkbox>
     </w-checkbox-group>
     {{rr}}
+
+    <input type="checkbox" value="ff" v-model="rr"/>
   </div>
 </template>
 
@@ -143,13 +145,14 @@ export default {
     },
     haha(e){
       console.log(22,e)
-      this.kk = !this.kk;
+      this.rr = [];
       // this.$Alert.info({
       //   content:'我是信息',
       //   duration:3
       // })
     },
     submitFn(){
+      this.rr = ['ff'];
       console.log(666,this)
       this.$refs.myform.validate(valid=>{
         console.log(3333,valid)

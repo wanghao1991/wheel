@@ -155,7 +155,6 @@ export default class Input extends Vue{
     }
 
     const prefixElement = prefix ? <span class="w-input-prefix">{prefix}</span> : null;
-    console.log(3332221122,renderClearIcon())
     const suffixElement = suffix || allowClear ? (
       <span class="w-input-suffix">
         {renderClearIcon()}
