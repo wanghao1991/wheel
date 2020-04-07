@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add async-validator --dev
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add element-resize-detector --dev
 
 PATH: 
   C:\sybase\OCS-12_5\dll;C:\sybase\OCS-12_5\bin;C:\sybase\SQLRemote\dll;C:\sybase\RPL-12_5\bin;C:\sybase\JS-12_5\bin;C:\sybase\ASE-12_5\dll;C:\sybase\ASE-12_5\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\富基旋风科技\appSys01;C:\Pr;gram Files (x86)\富基旋风科技\appSys02;C:\Pr;gram Files (x86)\富基旋风科技\appSys01;C:\Pr;gram Files (x86)\富基旋风科技\appSys02;C:\Pr;gram Files (x86)\富基旋风科技\appSys03;C:\Pr;gram Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin\;C:\Users\17033290\AppData\Local\Microsoft\WindowsApps;C:\Users\17033290\AppData\Roaming\npm;C:\Program Files\nodejs;F:\Microsoft VS Code\bin;C:\Users\17033290\AppData\Local\Yarn\bin;C:\Python27;
@@ -14,8 +14,8 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: getaddrinfo ENOTFOUND snpm.cnsuning.com
-      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:60:26)
+  Error: connect ETIMEDOUT 220.250.64.225:80
+      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1134:14)
 
 npm manifest: 
   {
@@ -33,6 +33,7 @@ npm manifest:
     "devDependencies": {
       "@vue/test-utils": "^1.0.0-beta.31",
       "add": "^2.0.6",
+      "async-validator": "^3.2.4",
       "babel-core": "^6.26.3",
       "babel-helper-vue-jsx-merge-props": "^2.0.3",
       "babel-plugin-syntax-jsx": "^6.18.0",
@@ -578,6 +579,10 @@ Lockfile:
   async-limiter@~1.0.0:
     version "1.0.1"
     resolved "https://registry.npm.taobao.org/async-limiter/download/async-limiter-1.0.1.tgz?cache=0&sync_timestamp=1574272018408&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fasync-limiter%2Fdownload%2Fasync-limiter-1.0.1.tgz#dd379e94f0db8310b08291f9d64c3209766617fd"
+  
+  async-validator@^3.2.4:
+    version "3.2.4"
+    resolved "https://registry.npm.taobao.org/async-validator/download/async-validator-3.2.4.tgz#4e773a1d0d741016b455b7995b469a47cce0dbe0"
   
   async@1.x:
     version "1.5.2"
