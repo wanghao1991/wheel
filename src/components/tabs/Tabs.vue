@@ -12,8 +12,9 @@
                         <div ref="nav" :class="[prefixCls + '-nav']" :style="navStyle">
                             <div :class="barClasses" :style="barStyle"></div>
                             <div :class="tabCls(item)" v-for="(item,index) in navList" :key="index" @click="handleChange(index)">
-                                <Render v-if="item.labelType === 'function'" :render="item.label"></Render>
-                                <template v-else>{{item.label}}</template>
+                                <icon-base v-if="item.icon" :name="item.icon"></icon-base>
+                                <!-- <Render v-if="item.labelType === 'function'" :render="item.label"></Render> -->
+                                <template >{{item.label}}</template>
                             </div>
                         </div>
                     </div>
@@ -27,9 +28,10 @@
 </template>
 
 <script>
-import { findComponentsDownAll }  from '../../util/assist.js'
+import IconBase from '../IconBase.vue'
+import { findComponentsDownAll, oneOf }  from '../../util/assist.js'
 import elementResizeDetectorMaker from 'element-resize-detector';
-const prefixCls = 'ivu-tabs';
+const prefixCls = 'w-tabs';
 const transitionTime = 300; 
 
 const getNextTab = (list,activeKey,direction,countDisabledAlso)=>{
@@ -48,13 +50,14 @@ const focusFirst = (element,root)=>{
 }
 export default {
     name:'Tabs',
-    mixins:[ Emitter ],
+   
     components:{
-        Icon,Render
+        // Icon,Render
+        IconBase
     },
     provide(){
         return {
-            TabsInstance:this
+            TabInstance:this
         }
     },
     props:{
@@ -141,7 +144,7 @@ export default {
                 }
             ]
         },
-        contentClass(){
+        contentClasses(){
             return [
                 `${prefixCls}-content`,
                 {
@@ -213,6 +216,7 @@ export default {
             return TabPanes;
         },
         updateNav(){
+          
             this.navList = [];
             this.getTabs().forEach((pane,index)=>{
                 this.navList.push({
@@ -233,10 +237,12 @@ export default {
         },
         updateBar(){
             this.$nextTick(()=>{
+               
                 const index = this.getTabIndex(this.activeKey);
                 if(!this.$refs.nav) return;
                 const prevTabs = this.$refs.nav.querySelectorAll(`.${prefixCls}-tab`);
                 const tab = prevTabs[index];
+                console.log('bar',tab)
                 this.barWidth = tab ? parseFloat(tab.offsetWidth) : 0;
 
                 if(index > 0 ){
@@ -363,7 +369,8 @@ export default {
             return navStyle.transform ? Number(navStyle.transform.match(/translateX\(-(\d+(\.\d+)*)px\)/)[1]) : 0;
         },
         getTabIndex(name){
-            this.navList.findIndex(nav => nav.name === name)
+           
+            return this.navList.findIndex(nav => nav.name === name)
         },
         setOffset(){
             this.navStyle.transform = `translateX(-${value}px)`;
@@ -431,18 +438,18 @@ export default {
             [...this.$refs.panes.querySelectorAll(`.${prefixCls}-tabpane`)].forEach((el,i)=>{
                 if(index == i){
 
-                    [...el.$children].filter(child=>child.classList.contains(`${prefixCls}-tabpane`)).forEach(child=>{
-                        child.style.visibility = 'visible';
-                    })
-                    if(this.captureFocus){
-                        setTimeout(() => {
-                            focusFirst(el, el)
-                        }, transitionTime);
-                    }
+                    // [...el.$children].filter(child=>child.classList.contains(`${prefixCls}-tabpane`)).forEach(child=>{
+                    //     child.style.visibility = 'visible';
+                    // })
+                    // if(this.captureFocus){
+                    //     setTimeout(() => {
+                    //         focusFirst(el, el)
+                    //     }, transitionTime);
+                    // }
                 }else{
-                    [...el.$children].filter(child=>child.classList.contains(`${prefixCls}-tabpane`)).forEach(child=>{
-                            child.style.visibility = 'hidden';
-                        })
+                    // [...el.$children].filter(child=>child.classList.contains(`${prefixCls}-tabpane`)).forEach(child=>{
+                    //         child.style.visibility = 'hidden';
+                    //     })
 
                 }
             })
@@ -453,5 +460,61 @@ export default {
 </script>
 
 <style>
-
+    .w-tabs{
+        position: relative;
+        overflow: hidden;
+        color: #515a6e;
+    }
+    .w-tabs-bar{
+        border-bottom: 1px solid #dcdee2;
+        margin-bottom: 16px;
+        
+    }
+    .w-tabs-nav-container{
+        position: relative;
+        margin-bottom: -1px;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 14px;
+        line-height: 1.5;
+        outline: 0;
+    }
+    .w-tabs-nav-wrap{
+        position: relative;
+        overflow: hidden;
+    }
+    .w-tabs-nav-scroll{
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .w-tabs-nav .w-tabs-tab{
+        position: relative;
+        cursor: pointer;
+        display: inline-block;
+        height: 100%;
+        padding: 8px 16px;
+        margin-right: 16px;    
+    }
+    .w-tabs-nav .w-tabs-tab-disabled{
+        color:#ccc;
+        pointer-events: none;
+    }
+    .w-tabs-nav .w-tabs-tab-active{
+        color:#2d8cf0;
+    }
+    .w-tabs-ink-bar{
+        position: absolute;
+        left:0;
+        bottom: 0;
+        height: 2px;
+        z-index: 1;
+        background: #2d8cf0;
+        transition: transform .3s ease-in-out;
+    }
+    .w-tabs-content{
+        display: flex;
+        flex-direction: row;
+        flex-wrap:nowrap;
+        transition: transform .3s ease-in-out;
+    }
 </style>

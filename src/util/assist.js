@@ -82,4 +82,11 @@ function findComponentsDownAll(context,componentName){
     return res;
  }
 
- export {findComponentUpward, findComponentsUpwardAll,  findComponentDown, findComponentsDownAll, findComponentsBrother}
+ /**
+  * 判断参数是否是其中之一
+  */
+ function oneOf(value,validList){
+    return validList.includes(value)
+ }
+
+ export {findComponentUpward, findComponentsUpwardAll,  findComponentDown, findComponentsDownAll, findComponentsBrother, oneOf}

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>{{ msg }}</h1>
+    <!-- <h1>{{ msg }}</h1>
     <icon-base name="loading" @click="ppp"></icon-base>
     <icon-base name="setting"></icon-base>
 
@@ -68,7 +68,36 @@
     </w-checkbox-group>
     {{rr}}
 
-    <input type="checkbox" value="ff" v-model="rr"/>
+    <input type="checkbox" value="ff" v-model="rr"/> -->
+    <div style="width:400px;background:#a2a2a2">
+      <w-tabs v-model="mm">
+          <tab-pane label="菜单一" name="aa" icon="person">
+            <h1>撒大苏打大苏打实打实打算</h1>
+            <h1>撒大苏打大苏打实打实打算</h1>
+            <h1>撒大苏打大苏打实打实打算</h1>
+            <h1>撒大苏打大苏打实打实打算</h1>
+            <h1>撒大苏打大苏打实打实打算</h1>
+            <h1>撒大苏打大苏打实打实打算</h1>
+          </tab-pane>
+          <tab-pane label="菜单二" name="bb" icon="setting">
+            <h1>撒大苏打大苏打实打实打算2</h1>
+            <h1>撒大苏打大苏打实打实打算2</h1>
+            <h1>撒大苏打大苏打实打实打算2</h1>
+            <h1>撒大苏打大苏打实打实打算2</h1>
+            <h1>撒大苏打大苏打实打实打算</h1>
+            <h1>撒大苏打大苏打实打实打算2</h1>
+          </tab-pane>
+          <tab-pane label="菜单三" name="cc">
+            <h1>撒大苏打大苏打实打实打算</h1>
+            <h1>撒当时的大苏打大苏打实打实打算</h1>
+            <h1>撒大苏打大苏打实打实打算</h1>
+            <h1>撒大苏得瑟得瑟打大苏打实打实打算</h1>
+            <h1>撒大苏打大苏打实打实打算</h1>
+            <h1>撒大苏大苏打实打实大苏打实打实的打大苏打实打实打算</h1>
+          </tab-pane>
+          <tab-pane label="菜四" name="ee">4</tab-pane>
+      </w-tabs>
+    </div>
   </div>
 </template>
 
@@ -85,6 +114,9 @@ import wCheckboxGroup from './components/checkbox/checkbox-group.vue'
 import wForm from './components/form/form.vue'
 import wFormItem from './components/form/form-item.vue'
 
+import wTabs from './components/tabs/Tabs.vue'
+import tabPane from './components/tabs/TabPane.vue'
+
 
 export default {
   name: 'app',
@@ -96,10 +128,13 @@ export default {
     wCheckbox,
     wCheckboxGroup,
     wForm,
-    wFormItem
+    wFormItem,
+    wTabs,
+    tabPane
   },
   data () {
     return {
+      mm:'cc',
       rr:[],
       pp:'dddddd',
       msg: 'Welcome to Your Vue.js',

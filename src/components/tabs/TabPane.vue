@@ -75,5 +75,11 @@ export default {
 </script>
 
 <style>
-
+    .w-tabs-tabpane{
+        width: 100%;
+        flex-shrink: 0;
+        outline: 0;
+        transition: opacity 0.3s;
+        opacity: 1;
+    }
 </style>
